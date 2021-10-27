@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
+  const [profile, setProfile] = useState({ students: [], grades: [] });
+
+  useEffect(() => {
+    async function getStudents() {
+      const res = await axios.get(
+        "https://api.hatchways.io/assessment/students"
+      );
+      setProfile(res.data);
+
+      console.log(res);
+    }
+    getStudents();
+  }, []);
+  const average = (items) => {
+    const output = [];
+    for (let element of items) output.push(element);
+    const sum = output.reduce((a, c) => {
+      return a + c;
+    }, 0);
+    const total = sum / output.length;
+    return total;
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {profile.students.map((student) => (
+        <div>
+          <img src={student.pic} alt="icon" />
+          <h3>
+            {student.firstName} {student.lastName}
+          </h3>
+          <p>Email: {student.email}</p>
+          <p>Company: {student.company}</p>
+          <p>Skill: {student.skill}</p>
+          <p>Average: {average(student.grades).toFixed(2)}</p>
+        </div>
+      ))}
     </div>
   );
 }
