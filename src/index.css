@@ -1,13 +1,48 @@
+html {
+  font-size: 62.5%; /* 16px x 62.5 = 10px = 1rem */
+  box-sizing: border-box;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  height: 100vh;
+  font-size: 1.6rem;
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif, "Montserrat", "Rubik";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f0efeb;
+}
+#root {
+  height: 100%;
+}
+/* ProfileCard */
+.card-profile {
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+  grid-template-areas: "pic student-info";
+  border-bottom: 0.5px solid #f0efeb;
+  background-color: #fff;
+}
+.pic {
+  grid-area: pic;
+  display: flex;
+  justify-content: center;
+  padding: 40% 10% 40% 10%;
+}
+.pic img {
+  width: 100%;
+  border: 1px solid grey;
+  border-radius: 50%;
+}
+.student-info {
+  grid-area: student-info;
+}
+.information {
+  padding-left: 2rem;
+  font-family: "Raleway@400", sans-serif;
+  color: grey;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  font-family: "Raleway@900", sans-serif;
 }
