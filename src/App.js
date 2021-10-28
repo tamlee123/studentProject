@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import ProfileCard from "./ProfileCard";
+import SearchBox from "./SearchBox";
 
 function App() {
   const [profile, setProfile] = useState({ students: [] });
@@ -30,6 +31,8 @@ function App() {
   };
   return (
     <div className="App">
+      <SearchBox />
+      <hr />
       {profile.students.map((student) => (
         <div className="displayCard">
           <ProfileCard
