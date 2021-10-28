@@ -6,17 +6,20 @@ import ProfileCard from "./ProfileCard";
 function App() {
   const [profile, setProfile] = useState({ students: [] });
 
+  //fetching data from api
   useEffect(() => {
     async function getStudents() {
       const res = await axios.get(
         "https://api.hatchways.io/assessment/students"
       );
+
       setProfile(res.data);
 
       console.log(res);
     }
     getStudents();
   }, []);
+  //calculate average using reduce for sum
   const average = (items) => {
     console.log({ items: items });
     const output = [];
