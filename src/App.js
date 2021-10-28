@@ -19,15 +19,13 @@ function App() {
     }
     getStudents();
   }, []);
+
   //calculate average using reduce for sum
   const average = (items) => {
-    console.log({ items: items });
-    const output = [];
-    for (let element of items) output.push(element);
-    const sum = output.reduce((a, c) => {
+    const sum = items.reduce((a, c) => {
       return parseInt(a) + parseInt(c);
-    }, 0);
-    const total = sum / output.length;
+    });
+    const total = sum / items.length;
     return total;
   };
   return (
