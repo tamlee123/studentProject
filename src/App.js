@@ -2,10 +2,12 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import ProfileCard from "./ProfileCard";
-import SearchBox from "./SearchBox";
 
 function App() {
   const [profile, setProfile] = useState({ students: [] });
+  const [q, setQ] = useState("");
+
+  // const [searchParam] = useState(["firstName", "lastName"]);
 
   //fetching data from api
   useEffect(() => {
@@ -15,7 +17,6 @@ function App() {
       );
 
       setProfile(res.data);
-
       console.log(res);
     }
     getStudents();
@@ -29,20 +30,36 @@ function App() {
     const total = sum / items.length;
     return total;
   };
+
+  const filterData = () =>
+    profile.students.filter(({ firstName = "", lastName = "" }) => {
+      return [firstName, lastName, `${firstName} ${lastName}`].some(
+        (newItem) => {
+          return newItem.toString().toLowerCase().indexOf(q.toLowerCase()) > -1;
+        }
+      );
+    });
+
   return (
     <div className="App">
-      <SearchBox />
+      <input
+        type="search"
+        placeholder="Search by name"
+        value={q}
+        onChange={(event) => setQ(event.target.value)}
+      />
       <hr />
-      {profile.students.map((student) => (
-        <div className="displayCard">
+      {filterData(profile).map((item, index) => (
+        <div className="displayCard" key={index}>
           <ProfileCard
-            icon={student.pic}
-            firstName={student.firstName}
-            lastName={student.lastName}
-            email={student.email}
-            company={student.company}
-            skill={student.skill}
-            average={average(student.grades)}
+            icon={item.pic}
+            fullName={item.firstName + " " + item.lastName}
+            // firstName={item.firstName}
+            // lastName={item.lastName}
+            email={item.email}
+            company={item.company}
+            skill={item.skill}
+            average={average(item.grades)}
           />
         </div>
       ))}
