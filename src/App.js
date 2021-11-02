@@ -1,13 +1,11 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import ProfileCard from "./ProfileCard";
+import "./App.css";
 
 function App() {
   const [profile, setProfile] = useState({ students: [] });
   const [q, setQ] = useState("");
-
-  // const [searchParam] = useState(["firstName", "lastName"]);
 
   //fetching data from api
   useEffect(() => {
@@ -46,19 +44,21 @@ function App() {
         type="search"
         placeholder="Search by name"
         value={q}
-        onChange={(event) => setQ(event.target.value)}
+        onChange={(e) => {
+          setQ(e.target.value);
+        }}
       />
       <hr />
+
       {filterData(profile).map((item, index) => (
         <div className="displayCard" key={index}>
           <ProfileCard
             icon={item.pic}
             fullName={item.firstName + " " + item.lastName}
-            // firstName={item.firstName}
-            // lastName={item.lastName}
             email={item.email}
             company={item.company}
             skill={item.skill}
+            grades={item.grades}
             average={average(item.grades)}
           />
         </div>
