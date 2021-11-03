@@ -5,6 +5,7 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import AddTagForm from "./AddTagForm";
 // import List from "@material-ui/core/List";
 import useCreateTagState from "./hook/useCreateTagState";
+import TagList from "./TagList";
 function ProfileCard({
   icon,
   fullName,
@@ -18,7 +19,7 @@ function ProfileCard({
   const toggle = () => {
     setActive(!active);
   };
-  const initialTag = [{ id: 1, name: "tag0" }];
+  const initialTag = [{ id: 1, name: "" }];
   const { createTag, addTag } = useCreateTagState(initialTag);
 
   return (
@@ -61,7 +62,8 @@ function ProfileCard({
           </div>
         </div>
         <div>
-          <AddTagForm addTag={addTag} showTag={createTag} />
+          <TagList showTag={createTag} />
+          <AddTagForm addTag={addTag} />
         </div>
       </div>
     </div>
