@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-
+import AddTagForm from "./AddTagForm";
+// import List from "@material-ui/core/List";
+import useCreateTagState from "./hook/useCreateTagState";
 function ProfileCard({
   icon,
   fullName,
@@ -16,6 +18,8 @@ function ProfileCard({
   const toggle = () => {
     setActive(!active);
   };
+  const initialTag = [{ id: 1, name: "tag0" }];
+  const { createTag, addTag } = useCreateTagState(initialTag);
 
   return (
     <div className="card-profile">
@@ -55,6 +59,9 @@ function ProfileCard({
               ) : null}
             </p>
           </div>
+        </div>
+        <div>
+          <AddTagForm addTag={addTag} showTag={createTag} />
         </div>
       </div>
     </div>
