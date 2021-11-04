@@ -1,5 +1,5 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
+// import TextField from "@material-ui/core/TextField";
 import useInputState from "./../hook/useInputState";
 
 function AddTagForm({ addTag }) {
@@ -7,18 +7,18 @@ function AddTagForm({ addTag }) {
   return (
     <div>
       <form
-        style={{ border: "none", width: "10rem" }}
+        style={{ border: "none", width: "10rem", marginLeft: "2rem" }}
         onSubmit={(e) => {
           e.preventDefault();
           addTag(value);
           reset();
         }}
       >
-        <TextField
+        <input
           value={value}
           onChange={handleChange}
-          label="Add a tag"
-        ></TextField>
+          placeholder="Add a tag"
+        ></input>
       </form>
     </div>
   );
