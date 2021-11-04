@@ -3,9 +3,9 @@ import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddTagForm from "./AddTagForm";
-// import List from "@material-ui/core/List";
-import useCreateTagState from "./hook/useCreateTagState";
 import TagList from "./TagList";
+import useCreateTagState from "./../hook/useCreateTagState";
+
 function ProfileCard({
   icon,
   fullName,

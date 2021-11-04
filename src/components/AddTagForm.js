@@ -1,9 +1,9 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import useInputState from "./hook/useInputState";
+import useInputState from "./../hook/useInputState";
 
 function AddTagForm({ addTag }) {
-  const [value, handleChange, reset] = useInputState([]);
+  const [value, handleChange, reset] = useInputState("");
   return (
     <div>
       <form

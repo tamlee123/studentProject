@@ -5,8 +5,8 @@ function TagList({ showTag }) {
   return (
     <div className="list">
       <List>
-        {showTag.map((nameTag, i) => (
-          <ToAdd {...nameTag} key={nameTag.i} />
+        {showTag.map((nameTag) => (
+          <ToAdd {...nameTag} key={nameTag.id} />
         ))}
       </List>
     </div>

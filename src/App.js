@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import ProfileCard from "./ProfileCard";
+import ProfileCard from "./components/ProfileCard";
 import "./App.css";
 
 function App() {
