@@ -88,3 +88,9 @@ hr {
   border: none;
   border-radius: 5px;
 }
+.tag-form {
+  width: 20rem;
+  margin-left: 2rem;
+  border-bottom: 2px solid darkgray;
+  margin-bottom: 2rem;
+}

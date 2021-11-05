@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ProfileCard from "./ProfileCard";
-// import useInputState from "./../hooks/useInputState";
 import useCreateTagState from "./../hook/useCreateTagState";
 
 function StudentApp(props) {
@@ -46,8 +45,15 @@ function StudentApp(props) {
       .filter(filterTag);
   const filterTag = (student) => {
     const tags = studentTagMap[student.id];
-    console.log({ tags });
-    return !searchTag || !tags || tags.includes(searchTag);
+    if (searchTag === "" || searchTag == null) return true;
+    if (Array.isArray(tags)) {
+      for (let idx = 0; idx < tags.length; idx++) {
+        const tag = tags[idx];
+        if (tag.includes(searchTag)) return true;
+      }
+    }
+
+    return false;
   };
 
   return (
@@ -60,6 +66,7 @@ function StudentApp(props) {
           setQ(e.target.value);
         }}
       />
+      <hr />
       <input
         type="search"
         placeholder="Search by tag"
