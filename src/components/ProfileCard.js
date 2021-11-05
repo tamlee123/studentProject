@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-
+import AddTagForm from "./AddTagForm";
+import TagList from "./TagList";
+// import useCreateTagState from "./../hook/useCreateTagState";
 function ProfileCard({
   icon,
   fullName,
@@ -11,12 +13,20 @@ function ProfileCard({
   skill,
   grades,
   average,
+  addTag,
+  createTag,
+  studentId,
+  studentTagMap,
 }) {
   const [active, setActive] = useState("false");
   const toggle = () => {
     setActive(!active);
   };
-
+  // const initialTag = [];
+  // const { createTag, addTag } = useCreateTagState(initialTag);
+  const handleAddTag = (tagName) => {
+    addTag(studentId, tagName);
+  };
   return (
     <div className="card-profile">
       <div className="pic">
@@ -55,6 +65,16 @@ function ProfileCard({
               ) : null}
             </p>
           </div>
+          <TagList
+            showTag={
+              createTag
+                ? createTag.filter((tag) =>
+                    studentTagMap[studentId]?.includes(tag.name)
+                  )
+                : []
+            }
+          />
+          <AddTagForm addTag={handleAddTag} />
         </div>
       </div>
     </div>
